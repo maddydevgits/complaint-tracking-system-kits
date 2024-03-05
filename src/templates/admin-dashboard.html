@@ -29,13 +29,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto me-5">
             <li class="nav-item me-5">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="/admindashboard">Home</a>
             </li>
+            <!-- <li class="nav-item me-5">
+              <a class="nav-link" href="/resolve">Resolve</a>
+            </li> -->
             <li class="nav-item me-5">
-              <a class="nav-link" href="admin-login.html">Admin</a>
-            </li>
-            <li class="nav-item me-5">
-              <a class="nav-link" href="login.html">Sign in</a>
+              <a class="nav-link" href="/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -52,7 +52,7 @@
             <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">S. No.</th>
+                    <th scope="col">S.No</th>
                     <th scope="col">Complaint ID</th>
                     <th scope="col">Description</th>
                     <th scope="col">Proofs Submitted</th>
@@ -61,30 +61,34 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>323424234242</td>
-                    <td>Complaint against a person for harrasing women</td>
-                    <td>{IPFS LINK}</td>
-                    <td ><button class="btn btn-success" style="margin-right: 10px;">Accept</button><button class="btn btn-danger">Reject</button></td>
-                    <td><a href="resolve.html"><button class="btn btn-primary">FIR RESOLVE</button></a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>323412343213</td>
-                    <td>Mobile Roobbery</td>
-                    <td>{IPFS LINK}</td>
-                    <td ><button class="btn btn-success" style="margin-right: 10px;">Accept</button><button class="btn btn-danger">Reject</button></td>
-                    <td><a href="resolve.html"><button class="btn btn-primary">FIR RESOLVE</button></a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>3234247867</td>
-                    <td>Chain snatching Case</td>
-                    <td>{IPFS LINK}</td>
-                    <td ><button class="btn btn-success" style="margin-right: 10px;">Accept</button><button class="btn btn-danger">Reject</button></td>
-                    <td><a href="resolve.html"><button class="btn btn-primary">FIR RESOLVE</button></a></td>
-                  </tr>
+                  {%for i in range(l)%}
+                    <tr>
+                      <td>{{i+1}}</td>
+                      <td>{{dashboard_data[i][0]}}</td>
+                      <td>{{dashboard_data[i][1]}}</td>
+                      <td><a href="http://127.0.0.1:8080/ipfs/{{dashboard_data[i][2]}}">IPFS LINK</a></td>
+                      {%if dashboard_data[i][3]==0%}
+                        <td ><a class="btn btn-success" href="/case/{{dashboard_data[i][0]}}/2" style="margin-right: 10px;">Accept</a><a class="btn btn-danger" href="/case/{{dashboard_data[i][0]}}/1">Reject</a></td>
+                      {%else%}
+                        {%if dashboard_data[i][3]==2%}
+                          <td>Approved</td>
+                          {%else%}
+                            {%if dashboard_data[i][3]==1%}
+                              <td>Rejected</td>
+                            {%endif%}
+                        {%endif%}
+                      {%endif%}
+                      {%if dashboard_data[i][3]!=1%}
+                      {%if dashboard_data[i][4]==0%}
+                        <td><a href="/resolve"><button class="btn btn-primary">FIR RESOLVE</button></a></td>
+                      {%else%}
+                          <td><a href="http://127.0.0.1:8080/ipfs/{{dashboard_data[i][5]}}">FIR Copy</a></td>
+                      {%endif%}
+                      {%else%}
+                        <td>Not Applicable</td>
+                      {%endif%}
+                    </tr>
+                  {%endfor%}
                 </tbody>
               </table>
         </div>

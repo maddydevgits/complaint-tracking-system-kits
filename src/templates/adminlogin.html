@@ -50,13 +50,14 @@
               <h1>Admin Login</h1>
             </div>
             <div class="card-body">
-              <form>
-                <div class="form-group">
+              <form action="/adminloginform" method="post">
+                <div class="form-group"> 
                   <label >Wallet Address</label>
                   <input
                     type="text"
                     class="form-control"
                     id="wallet"
+                    name="wallet"
                     placeholder="Enter ID proof"
                   />
                 </div>
@@ -66,6 +67,7 @@
                     type="password"
                     class="form-control"
                     id="password"
+                    name="password"
                     placeholder="Enter password"
                   />
                 </div>
@@ -76,8 +78,8 @@
               </form>
             </div>
           </div>
-          <p class="text-success">{success message}</p>
-          <p class="text-danger">{error message}</p>
+          <p class="text-success">{{res}}</p>
+          <p class="text-danger">{{err}}</p>
         </div>
       </div>
     </div>
