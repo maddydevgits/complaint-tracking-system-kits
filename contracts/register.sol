@@ -18,9 +18,11 @@ contract register {
   string[] _cfirs;
 
   uint cid;
+  address admin;
 
   constructor(){
     cid=0;
+    admin=msg.sender;
   }
 
   mapping(string=>bool) _registeredUsers;
@@ -53,5 +55,28 @@ contract register {
 
   function viewComplaints() public view returns(uint[] memory,string[] memory,string[] memory,string[] memory,string[] memory,uint[] memory,uint[] memory,string[] memory){
     return(_complaintids,_cadhars,_cnames,_complaints,_cfiles,_cstatus,_fstatus,_cfirs);
+  }
+
+  function verifyLogin() public view returns(address,string memory){
+      return(admin,"1234");
+  }
+
+  function updateCase(uint complaintid,uint status) public {
+    uint i;
+    for(i=0;i<_complaintids.length;i++){
+      if(complaintid==_complaintids[i]) {
+        _cstatus[i]=status;
+      }
+    }
+  }
+
+  function updatefir(uint complaintid,uint status,string memory filehash) public {
+    uint i;
+    for(i=0;i<_complaintids.length;i++){
+      if(complaintid==_complaintids[i]){
+          _fstatus[i]=status;
+          _cfirs[i]=filehash;
+      }
+    }
   }
 }

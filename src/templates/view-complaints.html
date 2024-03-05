@@ -42,7 +42,7 @@
 
 
   <div class="container" id="single-complaint" style=" display: none;">
-    <a href="view-complaints.html"><button class="btn btn-danger mb-3" id="close-complaint" onclick="closecomplaint()">Back</button></a>
+    <a href="/mycomplaints"><button class="btn btn-danger mb-3" id="close-complaint" onclick="closecomplaint()">Back</button></a>
     <div class="card">
       <div class="card-header">Complaint Details</div>
       <div class="card-body">
@@ -85,13 +85,13 @@
             <tr>
               <th scope="row">{{i+1}}</th>
               <td>{{dashboard_data[i][0]}}</td>
-              <td width="650px">{{dashboard_data[i][1]}}<a href="javascript:void(0);" onclick="handleView()" class="btn btn-primary" style="margin-left: 10px">View</a></td>
-              <td><a class="button" href="http://127.0.0.1:8081/ipfs/{{dashboard_data[i][2]}}">Click Here to access Proofs</a></td>
+              <td width="650px">{{dashboard_data[i][1]}}</td>
+              <td><a class="button" href="http://127.0.0.1:8080/ipfs/{{dashboard_data[i][2]}}">Click Here to access Proofs</a></td>
               <td>{{dashboard_data[i][3]}}</td>
               {%if dashboard_data[i][4]=="NOT APPLICABLE"%}
               <td>NOT APPLICABLE</a></td>
               {%else%}
-              <td><a class="button" href="http://127.0.0.1:8081/ipfs/{{dashboard_data[i][4]}}">Click Here to access FIR Copy</a></td>
+              <td><a class="button" href="http://127.0.0.1:8080/ipfs/{{dashboard_data[i][4]}}">Click Here to access FIR Copy</a></td>
               {%endif%}
             </tr>
           {%endfor%}

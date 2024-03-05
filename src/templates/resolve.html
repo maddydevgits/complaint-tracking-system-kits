@@ -28,12 +28,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto me-5">
-            <li class="nav-item me-5"><a class="nav-link" href="index.html">Home</a></li>
             <li class="nav-item me-5">
-              <a class="nav-link" href="admin-login.html">Admin</a>
+              <a class="nav-link" href="/admindashboard">Home</a>
             </li>
+            <!-- <li class="nav-item me-5">
+              <a class="nav-link" href="/resolve">Resolve</a>
+            </li> -->
             <li class="nav-item me-5">
-              <a class="nav-link" href="login.html">Sign in</a>
+              <a class="nav-link" href="/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -49,25 +51,26 @@
               <h1>Reslove FIR status</h1>
             </div>
             <div class="card-body">
-              <form>
+              <form action="/resolveform" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label >wallet of victim</label>
+                  <label >Enter Complaint Id</label>
                   <input
                     type="text"
                     class="form-control"
                     id="wallet"
-                    placeholder="Enter ID proof"
+                    name="cid"
+                    placeholder="Enter ID"
                     required
                   />
                 </div>
                 <div class="form-group mt-3">
                   <label >Resolved</label>
-                  <input type="radio" name="status" id="status">
+                  <input type="radio" name="status" value="1" id="status">
                   <label >Partially Resolved</label>
-                  <input type="radio" name="status" id="status">
+                  <input type="radio" name="status" value="2" id="status">
                 </div>
                 <div class="form-group mt-3">
-                    <input type="file" name="fir" id="fir">
+                    <input type="file" name="chooseFile" id="fir">
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">
                   Submit
@@ -76,8 +79,8 @@
               </form>
             </div>
           </div>
-          <p class="text-success">{success message}</p>
-          <p class="text-danger">{error message}</p>
+          <p class="text-success">{{res}}</p>
+          <p class="text-danger">{{err}}</p>
         </div>
       </div>
     </div>
